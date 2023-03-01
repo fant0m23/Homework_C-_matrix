@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <ItemGroup>
+     <ProjectReference Include="c:\Users\fant0m23\УЧЁБА\C-sharp_Example\Example03\Example03.csproj" />
+  </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
