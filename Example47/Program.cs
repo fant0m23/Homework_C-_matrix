@@ -5,13 +5,13 @@
 // 1 -3,3 8 -9,9
 // 8 7,8 -7,1 9
 
-byte GetValidValueFromUser(string message)
+byte GetByteValueFromUser(string message)
 {
    Console.Write(message);
    string value = Console.ReadLine()!;
    bool valid = byte.TryParse(value, out byte f);
    if (valid == true) return Convert.ToByte(value);
-   else return GetValidValueFromUser(message);
+   else return GetByteValueFromUser(message);
 }
 double[,] CreateMatrix(int size0, int size1, int range)
 {
@@ -20,30 +20,34 @@ double[,] CreateMatrix(int size0, int size1, int range)
    {
       for (int j = 0; j < size1; j++)
       {
-         newArray[i, j] = Math.Round((new Random().Next(range * -1, range) * new Random().NextDouble()), 1);
+         newArray[i, j] = Math.Round((new Random().Next(range * -1, range) *
+                          new Random().NextDouble()),2);
       }
    }
    return newArray;
 }
-void PrintMatrix(double[,] matrix)
+string PrintMatrix(double[,] matrix)
 {
-   Console.WriteLine("Матрица: ");
-   for (int i = 0; i < matrix.GetLength(0); i++)
+   const int sizeCell = 5;
+   int rows = matrix.GetLength(0);
+   int columns = matrix.GetLength(1);
+   string result = String.Empty;
+   for (int i = 0; i < rows; i++)
    {
-      for (int j = 0; j < matrix.GetLength(1); j++)
+      for (int j = 0; j < columns; j++)
       {
-         Console.Write($"{matrix[i, j]} ");
+         result += $"{matrix[i, j],sizeCell}  ";
       }
-      Console.WriteLine();
+      result += "\n";
    }
+   return result;
 }
 
-int lines = GetValidValueFromUser("Введите количество строк двумерного массива ");
-int columns = GetValidValueFromUser("Введите количество столбцов двумерного массива ");
-int rangeNumbers = GetValidValueFromUser("Заполним матрицу случайными вещественными значениями " +
-                                          "из диапазона [-N ; N]. Введите N: ");
+int lines = GetByteValueFromUser("Введите количество строк двумерного массива: ");
+int columns = GetByteValueFromUser("Введите количество столбцов двумерного массива: ");
+int rangeNumbers = GetByteValueFromUser("Заполним матрицу случайными вещественными значениями " +
+                                        "из диапазона [-N ; N].  Введите N: ");
 double[,] mass = CreateMatrix(lines, columns, rangeNumbers);
-Console.WriteLine();
-PrintMatrix(mass);
+Console.WriteLine(PrintMatrix(mass));
 
 

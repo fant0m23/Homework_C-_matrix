@@ -7,52 +7,57 @@
 // 1, 7 -> такого числа в массиве нет
 
 
-int GetValidValueFromUser(string message)
+int GetByteValueFromUser(string message)
 {
    Console.Write(message);
    string value = Console.ReadLine()!;
-   bool valid = int.TryParse(value, out int f);
-   if (valid == true) return Convert.ToInt32(value);
-   else return GetValidValueFromUser(message);
+   bool valid = byte.TryParse(value, out byte f);
+   if (valid == true) return Convert.ToByte(value);
+   else return GetByteValueFromUser(message);
 }
-int[,] CreateMatrix(int size0, int size1)
+int[,] CreateMatrix(int size0, int size1, int from = 1, int to = 10)
 {
    int[,] newArray = new int[size0, size1];
    for (int i = 0; i < size0; i++)
    {
       for (int j = 0; j < size1; j++)
       {
-         newArray[i, j] = new Random().Next(1, 10);
+         newArray[i, j] = new Random().Next(from, to);
       }
    }
    return newArray;
 }
-void PrintMatrix(int[,] matrix)
+string PrintMatrix(int[,] matrix)
 {
-   Console.WriteLine("Матрица: ");
-   for (int i = 0; i < matrix.GetLength(0); i++)
+   int rows = matrix.GetLength(0);
+   int columns = matrix.GetLength(1);
+   string result = String.Empty;
+   for (int i = 0; i < rows; i++)
    {
-      for (int j = 0; j < matrix.GetLength(1); j++)
+      for (int j = 0; j < columns; j++)
       {
-         Console.Write($"{matrix[i, j]} ");
+         result += $"{matrix[i, j]}  ";
       }
-      Console.WriteLine();
+      result += "\n";
    }
+   return result;
 }
-void CheckPosition(int[,] martix, int lines, int columns)
+string CheckPosition(int[,] martix, int lines, int columns)
 {
-   if (lines > martix.GetLength(0) - 1  || columns > martix.GetLength(1) - 1)
+   if (lines > martix.GetLength(0) - 1 || columns > martix.GetLength(1) - 1)
    {
-      Console.WriteLine("Элемента c такой позицией в массиве нет");
+      return "Элемента c такой позицией в массиве нет";
    }
-   else Console.WriteLine(martix[lines, columns]);
+   else return $"{martix[lines, columns]}";
 }
 
-int lines = GetValidValueFromUser("Введите количество строк двумерного массива: ");
-int columns = GetValidValueFromUser("Введите количество столбцов двумерного массива: ");
+int lines = GetByteValueFromUser("Введите количество строк двумерного массива: ");
+int columns = GetByteValueFromUser("Введите количество столбцов двумерного массива: ");
 int[,] matrix = CreateMatrix(lines, columns);
-PrintMatrix(matrix);
 
-int horizontal = GetValidValueFromUser("Введите номер строки матрицы, где находится искомый элемент: ");
-int vertical = GetValidValueFromUser("Введите номер столбца матрицы, где находится искомый элемент: ");
-CheckPosition(matrix, horizontal, vertical);
+Console.Write(PrintMatrix(matrix));
+
+int horizontal = GetByteValueFromUser("Введите номер строки матрицы, где находится искомый элемент: ");
+int vertical = GetByteValueFromUser("Введите номер столбца матрицы, где находится искомый элемент: ");
+
+Console.Write(CheckPosition(matrix, horizontal, vertical));
