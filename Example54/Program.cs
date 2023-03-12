@@ -15,7 +15,7 @@ int GetByteValueFromUser(string message)
    Console.Write(message);
    string userInput = Console.ReadLine()!;
    bool valid = byte.TryParse(userInput, out byte value);
-   if (valid == true) return value;
+   if (valid == true && value != 0) return value;
    else return GetByteValueFromUser(message);
 }
 int[,] CreateMatrix(int size0, int size1, int from = 1, int to = 10)
