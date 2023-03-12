@@ -32,23 +32,32 @@ int[,] RotateMatrix(int[,] matrix)
    {
       for (int j = 0; j < newArray.GetLength(1); j++)
       {
-         newArray[i,j] = matrix[j, i];
+         newArray[i, j] = matrix[j, i];
       }
    }
    return newArray;
+}
+void PrintMatrixToFile(int[,] matrix)
+{
+   StreamWriter file = new StreamWriter("Матрица.csv");
+   for (int i = 0; i < matrix.GetLength(0); i++)
+   {
+      for (int j = 0; j < matrix.GetLength(1); j++)
+      {
+         if (j == matrix.GetLength(1) - 1) file.WriteLine($"{matrix[i, j]};");
+         else file.Write($"{matrix[i, j]};");
+      }
+   }
+   file.Close();
 }
 
 
 int lines = 3;
 int columns = 3;
 
-// if (lines != columns)
-// {
-//    Console.WriteLine("Матрица не переворачивается");
-// }
-
 int[,] mass = CreateMatrix(lines, columns);
 PrintMatrix(mass);
 int[,] massNew = RotateMatrix(mass);
-Console.WriteLine();
-PrintMatrix(massNew);
+PrintMatrixToFile(massNew);
+
+
