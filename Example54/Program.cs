@@ -13,9 +13,9 @@
 int GetByteValueFromUser(string message)
 {
    Console.Write(message);
-   string value = Console.ReadLine()!;
-   bool valid = byte.TryParse(value, out byte f);
-   if (valid == true) return Convert.ToByte(value);
+   string userInput = Console.ReadLine()!;
+   bool valid = byte.TryParse(userInput, out byte value);
+   if (valid == true) return value;
    else return GetByteValueFromUser(message);
 }
 int[,] CreateMatrix(int size0, int size1, int from = 1, int to = 10)
@@ -71,8 +71,8 @@ void SortMatrix(int[,] mass)
 int lines = GetByteValueFromUser("Введите количество строк двумерного массива: ");
 int columns = GetByteValueFromUser("Введите количество столбцов двумерного массива: ");
 int[,] mass = CreateMatrix(lines, columns);
-DateTime begin = DateTime.Now;
+// DateTime begin = DateTime.Now;
 Console.WriteLine(PrintMatrix(mass));
 SortMatrix(mass);
 Console.WriteLine(PrintMatrix(mass));
-Console.WriteLine((DateTime.Now - begin).TotalMicroseconds);
+// Console.WriteLine((DateTime.Now - begin).TotalMicroseconds);

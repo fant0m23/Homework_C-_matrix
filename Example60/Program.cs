@@ -10,9 +10,9 @@
 int GetByteValueFromUser(string message)
 {
    Console.Write(message);
-   string value = Console.ReadLine()!;
-   bool valid = byte.TryParse(value, out byte f);
-   if (valid == true) return Convert.ToByte(value);
+   string userInput = Console.ReadLine()!;
+   bool valid = byte.TryParse(userInput, out byte value);
+   if (valid == true) return value;
    else return GetByteValueFromUser(message);
 }
 int[,,] Create3xArray(int size0, int size1, int size2)
