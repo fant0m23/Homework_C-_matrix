@@ -9,7 +9,7 @@ int GetByteValueFromUser(string message)
    Console.Write(message);
    string userInput = Console.ReadLine()!;
    bool valid = byte.TryParse(userInput, out byte value);
-   if (valid == true && value != 0) return value;
+   if (valid == true) return value;
    else return GetByteValueFromUser(message);
 }
 void CorrectionRange(ref int beginRange, ref int endRange)
