@@ -23,7 +23,8 @@ void CorrectionRange(ref int beginRange, ref int endRange)
 }
 int SummFromMtoN(int numberM, int numberN)
 {
-   if (numberM == numberN || Math.Abs(numberM - numberN) == 1) return numberM + numberN;
+   if (numberM == numberN) return numberN;
+   else if (numberN - numberM == 1) return numberM + numberN;
    else return numberM + SummFromMtoN(numberM + 1, numberN);
 }
 
