@@ -118,6 +118,19 @@ M = 4; N = 8. -> 30
 
 [Решение](https://github.com/fant0m23/Homework_C-_matrix/blob/main/Example66/Program.cs)
 
+## Задача 68:
+
+Напишите программу вычисления функции Аккермана с помощью рекурсии.
+
+Даны два неотрицательных числа m и n. Даны два неотрицательных числа m и n.
+
+m = 2, n = 3 -> A(m,n) = 9
+
+m = 3, n = 2 -> A(m,n) = 29
+
+[Решение](https://github.com/fant0m23/Homework_C-_matrix/blob/main/Example68/Program.cs)
+
+
 ## Дополнительно
 
 Проредить случайные точки в пряугольной области --> [Решение](https://github.com/fant0m23/Homework_C-_matrix/blob/main/marketplaces)

@@ -4,18 +4,22 @@
 // m = 3, n = 2 -> A(m,n) = 29
 
 
-int GetByteValueFromUser(string message)
+long GetLongValueFromUser(string message)
 {
    Console.Write(message);
    string userInput = Console.ReadLine()!;
-   bool valid = byte.TryParse(userInput, out byte value);
+   bool valid = long.TryParse(userInput, out long value);
    if (valid == true) return value;
-   else return GetByteValueFromUser(message);
+   else return GetLongValueFromUser(message);
+}
+long Akkerman(long m, long n)
+{
+   if (m == 0) return n + 1;
+   else if (m != 0 && n == 0) return Akkerman(m - 1, 1);
+   else return Akkerman(m - 1, Akkerman(m, n - 1));
 }
 
+long number1 = GetLongValueFromUser("Введите значение M: ");
+long number2 = GetLongValueFromUser("Введите значение N: ");
 
-
-int number1 = GetByteValueFromUser("Введите значение M: ");
-int number2 = GetByteValueFromUser("Введите значение N: ");
-
-Console.WriteLine();
+Console.WriteLine($"A({number1},{number2}) = {Akkerman(number1, number2)}");
